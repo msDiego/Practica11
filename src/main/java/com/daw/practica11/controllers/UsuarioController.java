@@ -7,6 +7,8 @@ import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
+@Controller
 @RequestMapping("/")
 public class UsuarioController {
 
@@ -22,8 +24,10 @@ public class UsuarioController {
     private UsuarioRepository usuarioRepository;
 
     @GetMapping("/users")
-    public ArrayList<UsuarioModel> getAll() {
-        return (ArrayList<UsuarioModel>) usuarioRepository.findAll();
+    public String getAll(Model model) {
+        ArrayList<UsuarioModel> allUsers = (ArrayList<UsuarioModel>) usuarioRepository.findAll();
+        model.addAttribute("users", allUsers);
+        return "users";
     }
 
     @GetMapping("/users/{id}")
