@@ -1,0 +1,22 @@
+
+a = V * (i / 12) / 1 - (1 + (i / 12)^-n)
+
+V -> Valor total hipotecado
+
+a -> la cuota fija de cada mes
+
+n -> número de cuotas totales
+
+i -> interés de tipo anual
+
+Cálculo de interés
+
+I = C * i
+
+
+ENLACES DE INTERÉS
+
+https://stackoverflow.com/questions/31159075/how-to-find-out-the-currently-logged-in-user-in-spring-boot
+
+https://www.codejava.net/frameworks/spring-boot/user-registration-and-login-tutorial
+
