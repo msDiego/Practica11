@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "hipoteca")
-public class HipotecaModel {
+public class Hipoteca {
 
     @Id
     @GeneratedValue
@@ -19,7 +19,7 @@ public class HipotecaModel {
 
     @OneToOne
     @JoinColumn(name = "usuario_id")
-    private UsuarioModel usuarioModel;
+    private User user;
 
     public Long getId() {
         return id;
@@ -53,11 +53,22 @@ public class HipotecaModel {
         this.total = total;
     }
 
-    public UsuarioModel getUsuarioModel() {
-        return usuarioModel;
+    public User getUsuarioModel() {
+        return user;
     }
 
-    public void setUsuarioModel(UsuarioModel usuarioModel) {
-        this.usuarioModel = usuarioModel;
+    public void setUsuarioModel(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "HipotecaModel = {" +
+                "id: " + id +
+                ", cuotas: " + cuotas +
+                ", intereses: " + intereses +
+                ", total: " + total +
+                ", usuarioModel: " + user +
+                '}';
     }
 }

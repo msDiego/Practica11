@@ -1,11 +1,17 @@
 package com.daw.practica11;
 
+import com.daw.practica11.models.User;
+import com.daw.practica11.repositories.UsuarioRepository;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootTest
 class Practica11ApplicationTests {
 
+    /*
     @Test
      void testCalculadora(){
 
@@ -28,6 +34,28 @@ class Practica11ApplicationTests {
         }
 
 
+    }
+
+     */
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+     @Autowired
+     private BCryptPasswordEncoder encoder;
+
+
+    @Test
+    void testCreateUser(){
+
+        User user = new User();
+        user.setNombre("test2");
+        user.setEmail("test@gmail.com");
+        user.setPassword(encoder.encode("1234"));
+
+        User savedUser = usuarioRepository.save(user);
+
+        assert user.getEmail().equalsIgnoreCase(savedUser.getEmail());
     }
 
 }

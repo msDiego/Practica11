@@ -2,16 +2,21 @@ package com.daw.practica11.models;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "usuarios")
-public class UsuarioModel {
+public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column (unique = true)
     private Long id;
+    @Column
     private String nombre;
+    @Column
     private String password;
+    @Column
     private String email;
 
     public Long getId() {
@@ -44,5 +49,15 @@ public class UsuarioModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "UsuarioModel = {" +
+                "id:" + id +
+                ", nombre:'" + nombre + '\'' +
+                ", password:'" + password + '\'' +
+                ", email:'" + email + '\'' +
+                '}';
     }
 }

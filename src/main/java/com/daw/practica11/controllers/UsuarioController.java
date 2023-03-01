@@ -1,9 +1,7 @@
 package com.daw.practica11.controllers;
 
-import com.daw.practica11.models.HipotecaModel;
-import com.daw.practica11.models.UsuarioModel;
+import com.daw.practica11.models.User;
 import com.daw.practica11.repositories.UsuarioRepository;
-import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+// TODO controller para seguridad y login
 @Controller
 @RequestMapping("/")
 public class UsuarioController {
@@ -25,34 +23,34 @@ public class UsuarioController {
 
     @GetMapping("/users")
     public String getAll(Model model) {
-        ArrayList<UsuarioModel> allUsers = (ArrayList<UsuarioModel>) usuarioRepository.findAll();
+        ArrayList<User> allUsers = (ArrayList<User>) usuarioRepository.findAll();
         model.addAttribute("users", allUsers);
         return "users";
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<UsuarioModel> getOne(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
-        UsuarioModel usuarioModel = usuarioRepository.findById(id).orElseThrow(
+    public ResponseEntity<User> getOne(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
+        User user = usuarioRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("El usuario no ha sido encontrado o no existe: " + id));
 
-        return ResponseEntity.ok(usuarioModel);
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/users")
-    public UsuarioModel create(@Validated @RequestBody UsuarioModel usuarioModel) {
-        return usuarioRepository.save(usuarioModel);
+    public User create(@Validated @RequestBody User user) {
+        return usuarioRepository.save(user);
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<UsuarioModel> update(@PathVariable(value = "id") Long id, @Validated @RequestBody UsuarioModel usuarioModel) throws ResourceNotFoundException {
+    public ResponseEntity<User> update(@PathVariable(value = "id") Long id, @Validated @RequestBody User user) throws ResourceNotFoundException {
 
-        UsuarioModel newUser = usuarioRepository.findById(id).orElseThrow(
+        User newUser = usuarioRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("El usuario no ha sido encontrado o no existe: " + id)
         );
 
-        newUser.setNombre(usuarioModel.getNombre());
-        newUser.setEmail(usuarioModel.getEmail());
-        newUser.setPassword(usuarioModel.getPassword());
+        newUser.setNombre(user.getNombre());
+        newUser.setEmail(user.getEmail());
+        newUser.setPassword(user.getPassword());
 
         usuarioRepository.save(newUser);
 
