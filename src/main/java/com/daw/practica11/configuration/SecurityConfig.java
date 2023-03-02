@@ -35,7 +35,7 @@ public class SecurityConfig {
                     try {
                         auth.requestMatchers("/", "/auth/login", "/auth/signin", "/exito").permitAll().anyRequest().authenticated()
                                 .and()
-                                .formLogin().loginPage("/auth/login").defaultSuccessUrl("/auth/logincheck", true)
+                                .formLogin().loginPage("/auth/login").defaultSuccessUrl("/user", true)
                                 .failureUrl("/auth/login?error=true").loginProcessingUrl("/auth/login/check").permitAll()
                                 .and()
                                 .logout().logoutUrl("/logout").logoutSuccessUrl("/");

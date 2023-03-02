@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-
+<p th:text="${session.usuario}"></p>
+<h3 th:if="${session.usuario != null}">Bienvenido <span th:text="${session.usuario.username}"></span></h3>
 </body>
 </html>

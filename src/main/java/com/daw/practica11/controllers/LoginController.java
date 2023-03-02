@@ -29,22 +29,6 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String loginCheck(Authentication auth, HttpSession session){
-        String username = auth.getName();
-        if (session.getAttribute("usuario") == null){
-            User user = usuarioService.findByUsername(username);
-            user.setPassword(null);
-            session.setAttribute("usuario", user);
-        }
-        return "loginCheck";
-    }
-
-    @GetMapping("/logincheck")
-    public String login(){
-        return "loginCheck";
-    }
-
     @GetMapping("/signin")
     public String createAccount(Model model) {
         model.addAttribute("usuario", new User());
@@ -58,14 +42,8 @@ public class LoginController {
         } else {
             model.addAttribute("usuario", usuarioService.register(user));
         }
-        return "redirect:/exito";
+        return "redirect:/login";
 
     }
-
-    @GetMapping("/exito")
-    public String exito(){
-        return "exito";
-    }
-
 
 }
