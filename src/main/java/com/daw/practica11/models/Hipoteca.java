@@ -2,6 +2,8 @@ package com.daw.practica11.models;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "hipoteca")
 public class Hipoteca {
@@ -17,12 +19,31 @@ public class Hipoteca {
     @Column
     private double total;
 
+    @Column
+    private Date creacion;
+
     @OneToOne
     @JoinColumn(name = "usuario_id")
     private User user;
 
     public Long getId() {
         return id;
+    }
+
+    public Date getCreacion() {
+        return creacion;
+    }
+
+    public void setCreacion(Date creacion) {
+        this.creacion = creacion;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setId(Long id) {

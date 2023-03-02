@@ -9,14 +9,14 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (unique = true)
     private Long id;
-    @Column
-    private String nombre;
+    @Column (unique = true)
+    private String username;
     @Column
     private String password;
-    @Column
+    @Column (unique = true)
     private String email;
 
     public Long getId() {
@@ -27,12 +27,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUsername(String nombre) {
+        this.username = nombre;
     }
 
     public String getPassword() {
@@ -55,7 +55,7 @@ public class User implements Serializable {
     public String toString() {
         return "UsuarioModel = {" +
                 "id:" + id +
-                ", nombre:'" + nombre + '\'' +
+                ", nombre:'" + username + '\'' +
                 ", password:'" + password + '\'' +
                 ", email:'" + email + '\'' +
                 '}';

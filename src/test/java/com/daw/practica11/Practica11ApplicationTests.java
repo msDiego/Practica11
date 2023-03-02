@@ -1,11 +1,10 @@
 package com.daw.practica11;
 
 import com.daw.practica11.models.User;
-import com.daw.practica11.repositories.UsuarioRepository;
+import com.daw.practica11.repositories.IUserDAO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootTest
@@ -39,7 +38,7 @@ class Practica11ApplicationTests {
      */
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private IUserDAO IUserDAO;
 
      @Autowired
      private BCryptPasswordEncoder encoder;
@@ -49,11 +48,11 @@ class Practica11ApplicationTests {
     void testCreateUser(){
 
         User user = new User();
-        user.setNombre("test2");
+        user.setUsername("test2");
         user.setEmail("test@gmail.com");
         user.setPassword(encoder.encode("1234"));
 
-        User savedUser = usuarioRepository.save(user);
+        User savedUser = IUserDAO.save(user);
 
         assert user.getEmail().equalsIgnoreCase(savedUser.getEmail());
     }
