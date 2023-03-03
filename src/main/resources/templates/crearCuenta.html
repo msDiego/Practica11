@@ -22,20 +22,26 @@
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="username">Tu usuario</label>
                                 <input type="text" id="username" name="username" th:field="*{username}" class="form-control form-control-lg" required/>
-                                <span style="color: indianred; font-weight: bolder" th:if="${#fields.hasErrors('username')}" th:errorclass="error" th:errors="*{username}"></span>
+                                <ul>
+                                    <li style="color: indianred; font-weight: bolder" th:each="err : ${#fields.errors('username')}" th:text="${err}"></li>
+                                </ul>
                             </div>
 
 
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="email">Tu Email</label>
                                 <input type="text" id="email" name="email" th:field="*{email}" class="form-control form-control-lg" required/>
-                                <span style="color: indianred; font-weight: bolder" th:if="${#fields.hasErrors('email')}" th:errorclass="error" th:errors="*{email}"></span>
+                                <ul>
+                                    <li style="color: indianred; font-weight: bolder" th:each="err : ${#fields.errors('email')}" th:text="${err}"></li>
+                                </ul>
                             </div>
 
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="password">Password</label>
                                 <input type="password" id="password" name="password" th:field="*{password}" class="form-control form-control-lg" required/>
-                                <span style="color: indianred; font-weight: bolder" th:if="${#fields.hasErrors('password')}" th:errorclass="error" th:errors="*{password}"></span>
+                                <ul>
+                                    <li style="color: indianred; font-weight: bolder" th:each="err : ${#fields.errors('password')}" th:text="${err}"></li>
+                                </ul>
                             </div>
 
                             <div class="d-flex justify-content-center">

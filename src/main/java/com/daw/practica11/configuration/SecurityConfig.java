@@ -33,7 +33,7 @@ public class SecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     try {
-                        auth.requestMatchers("/", "/auth/login", "/auth/signin", "/exito").permitAll().anyRequest().authenticated()
+                        auth.requestMatchers("/", "/auth/login", "/auth/signin").permitAll().anyRequest().authenticated()
                                 .and()
                                 .formLogin().loginPage("/auth/login").defaultSuccessUrl("/user", true)
                                 .failureUrl("/auth/login?error=true").loginProcessingUrl("/auth/login/check").permitAll()
