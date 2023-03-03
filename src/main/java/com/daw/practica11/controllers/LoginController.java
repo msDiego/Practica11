@@ -4,6 +4,7 @@ import com.daw.practica11.models.User;
 import com.daw.practica11.services.UserDetailsService;
 import com.daw.practica11.services.UsuarioServiceImpl;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,12 +37,15 @@ public class LoginController {
     }
 
     @PostMapping("/signin")
-    public String registrarCuenta(@Validated @ModelAttribute User user, BindingResult result, Model model) {
+    public String registrarCuenta(@Valid User user, BindingResult result, Model model) {
+
         if (result.hasErrors()) {
-            return "redirect:/signin";
-        } else {
-            model.addAttribute("usuario", usuarioService.register(user));
+            System.out.println(result.getAllErrors());
+            model.addAttribute("usuario", user);
+            return "crearCuenta";
         }
+
+        model.addAttribute("usuario", usuarioService.register(user));
         return "redirect:/login";
 
     }

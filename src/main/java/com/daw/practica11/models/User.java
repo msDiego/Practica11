@@ -1,8 +1,8 @@
 package com.daw.practica11.models;
 
 import jakarta.persistence.*;
-
 import java.io.Serializable;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "usuarios")
@@ -13,10 +13,15 @@ public class User implements Serializable {
     @Column (unique = true)
     private Long id;
     @Column (unique = true)
+    @NotNull(message = "Campo obligatorio")
     private String username;
     @Column
+    @NotNull (message = "Campo obligatorio")
+    @Size(min = 8, message = "Debe contener al menos 8 caracteres")
     private String password;
     @Column (unique = true)
+    @Email(message = "Introduzca un email válido")
+    @NotNull(message = "Campo obligatorio")
     private String email;
 
     public Long getId() {
