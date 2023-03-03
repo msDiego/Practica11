@@ -1,6 +1,8 @@
 package com.daw.practica11.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -13,13 +15,17 @@ public class Hipoteca {
     @Column(unique = true, nullable = false)
     private Long id;
     @Column
+    @Size(min = 1, message = "El valor introducido no es válido")
     private int cuotas;
     @Column
+    @Size(min = 1, message = "El valor introducido no es válido")
     private double intereses;
     @Column
+    @Size(min = 1, message = "El valor introducido no es válido")
     private double total;
 
     @Column
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     private Date creacion;
 
     @OneToOne
