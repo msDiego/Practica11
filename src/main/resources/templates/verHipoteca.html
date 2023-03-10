@@ -12,6 +12,7 @@
     <table class="table">
         <thead>
         <tr>
+            <th scope="col">Mensualidad</th>
             <th scope="col">Total Pagado</th>
             <th scope="col">Cuota fija</th>
             <th scope="col">Interés pagado</th>
@@ -21,10 +22,11 @@
         </thead>
         <tbody>
         <tr th:each="hipoteca : ${cuadroAmortizacion}">
-            <td th:text="${hipoteca.get(0)}"></td>
-            <td th:text="${hipoteca.get(1)}"></td>
-            <td th:text="${hipoteca.get(2)}"></td>
-            <td th:text="${hipoteca.get(3)}"></td>
+            <td th:text="${hipotecaStat.index + 1}">€</td>
+            <td th:text="${hipoteca.get(0)}">€</td>
+            <td th:text="${hipoteca.get(1)}">€</td>
+            <td th:text="${hipoteca.get(2)}">€</td>
+            <td th:text="${hipoteca.get(3)}">€</td>
         </tr>
         </tbody>
     </table>

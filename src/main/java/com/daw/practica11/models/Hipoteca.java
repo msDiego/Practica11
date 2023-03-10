@@ -1,10 +1,10 @@
 package com.daw.practica11.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Min;
 import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDate;
 
-import java.util.Date;
 
 @Entity
 @Table(name = "hipoteca")
@@ -15,18 +15,18 @@ public class Hipoteca {
     @Column(unique = true, nullable = false)
     private Long id;
     @Column
-    @Size(min = 1, message = "El valor introducido no es válido")
+    @Min(value = 1, message = "El valor introducido no es válido" )
     private int cuotas;
     @Column
-    @Size(min = 1, message = "El valor introducido no es válido")
+    @Min(value = 1, message = "El valor introducido no es válido")
     private double intereses;
     @Column
-    @Size(min = 1, message = "El valor introducido no es válido")
+    @Min(value = 1, message = "El valor introducido no es válido")
     private double total;
 
     @Column
     @DateTimeFormat(pattern = "dd-mm-yyyy")
-    private Date creacion;
+    private LocalDate creacion;
 
     @OneToOne
     @JoinColumn(name = "usuario_id")
@@ -36,11 +36,11 @@ public class Hipoteca {
         return id;
     }
 
-    public Date getCreacion() {
+    public LocalDate getCreacion() {
         return creacion;
     }
 
-    public void setCreacion(Date creacion) {
+    public void setCreacion(LocalDate creacion) {
         this.creacion = creacion;
     }
 

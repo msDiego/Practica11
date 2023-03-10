@@ -17,27 +17,27 @@
 <div class="card">
     <div class="card-body">
         <h2 class="card-header">Calcula tu hipoteca</h2> <br>
-        <form class="" th:action="@{/user/hipoteca}" th:object="${hipoteca}" method="POST">
+        <form class="" th:action="@{/user}" th:object="${hipoteca}" method="POST">
             <div class="mb-3">
                 <label for="cuotas" class="form-label">Cuotas</label>
+                <input type="text" class="form-control" id="cuotas" th:field="*{cuotas}" placeholder="">
                 <ul>
                     <li style="color: indianred; font-weight: bolder" th:each="err : ${#fields.errors('cuotas')}" th:text="${err}"></li>
                 </ul>
-                <input type="text" class="form-control" id="cuotas" th:field="*{cuotas}">
             </div>
             <div class="mb-3">
                 <label for="intereses" class="form-label">Intereses</label>
+                <input type="text" class="form-control" id="intereses" th:field="*{intereses}" placeholder="">
                 <ul>
                     <li style="color: indianred; font-weight: bolder" th:each="err : ${#fields.errors('intereses')}" th:text="${err}"></li>
                 </ul>
-                <input type="text" class="form-control" id="intereses" th:field="*{intereses}">
             </div>
             <div class="mb-3">
                 <label for="total" class="form-label">Total a hipotecar</label>
+                <input type="text" class="form-control" id="total" th:field="*{total}" placeholder="">
                 <ul>
                     <li style="color: indianred; font-weight: bolder" th:each="err : ${#fields.errors('total')}" th:text="${err}"></li>
                 </ul>
-                <input type="text" class="form-control" id="total" th:field="*{total}">
             </div>
             <div>
                 <input class="btn btn-primary" type="submit" value="Calcular">
@@ -45,6 +45,11 @@
         </form>
     </div>
 
+</div>
+
+<div class="card m-4">
+    <p class="card-header"> Si lo prefieres, puedes ver las hipotecas que has hecho anteriormente</p>
+    <a th:href="@{/user/hipoteca}" class="btn btn-primary m-4 p-2" >Ver hipotecas</a>
 </div>
 
 
